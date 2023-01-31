@@ -1,0 +1,17 @@
+{
+  "name": "backup01-admin_db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.6",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.5.0",
+    "node-cron": "^3.0.2"
+  }
+}
