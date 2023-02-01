@@ -17,7 +17,8 @@ firebase.initializeApp({
 const database = firebase.database();
 
 // Schedule task to run 6 times a day
-cron.schedule('0 */2 * * *', () => {
+// cron.schedule('0 */2 * * *', () => {
+app.get('/automatic', (req, res) => {
   database.ref().once('value', snapshot => {
     const data = snapshot.val();
     var datatosend = JSON.stringify(data);
@@ -37,11 +38,13 @@ cron.schedule('0 */2 * * *', () => {
       text: "✅ Admin Database Automatic Backup Successfull\n\n"+ datatosend
     })
       .then(() => {
+        res.send('Data sent to Telegram channel');
         console.log('Data sent to Telegram channel (Automatic)');
       })
       .catch(error => {
         console.error(error);
-        console.log('Error sending data to Telegram channel');
+        res.send('Error sending data to Telegram channel');
+        console.log('Error sending data to Telegram channel (Automatic)');
       });
   });
 });
