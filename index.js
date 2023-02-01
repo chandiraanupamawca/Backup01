@@ -24,12 +24,14 @@ app.get('/automatic', (req, res) => {
     var datatosend = JSON.stringify(data);
 
     // Send data to Google Drive
-    axios.post(`https://hook.us1.make.com/1tje3uhlywlsifs27k3ha8jo67k1th1k`, {datatosend})
+    axios.post(`https://hook.us1.make.com/lgkuxogvgctducpw0c5f8hslz8e4gzk9`, {"method": "Automatic", "database": "Admin", datatosend})
     .then(() => {
+      res.send('Data sent to Google Drive (Automatic)');
       console.log('Data sent to Google Drive (Automatic)');
     })
     .catch(error => {
       console.error(error);
+      res.send('Error sending data to Google Drive (Automatic)');
       console.log('Error sending data to Google Drive (Automatic)');
     });
     // Send data to Telegram channel
@@ -38,12 +40,10 @@ app.get('/automatic', (req, res) => {
       text: "✅ Admin Database Automatic Backup Successfull\n\n"+ datatosend
     })
       .then(() => {
-        res.send('Data sent to Telegram channel');
         console.log('Data sent to Telegram channel (Automatic)');
       })
       .catch(error => {
         console.error(error);
-        res.send('Error sending data to Telegram channel');
         console.log('Error sending data to Telegram channel (Automatic)');
       });
   });
@@ -55,12 +55,14 @@ app.get('/', (req, res) => {
       var datatosend = JSON.stringify(data);
   
       // Send data to Google Drive
-      axios.post(`https://hook.us1.make.com/1tje3uhlywlsifs27k3ha8jo67k1th1k`, {datatosend})
+      axios.post(`https://hook.us1.make.com/lgkuxogvgctducpw0c5f8hslz8e4gzk9`, {"method": "Manual", "database": "Admin", datatosend})
       .then(() => {
+        res.send('Data sent to Google Drive (Manual)');
         console.log('Data sent to Google Drive (Manual)');
       })
       .catch(error => {
         console.error(error);
+        res.send('Error sending data to Google Drive (Manual)');
         console.log('Error sending data to Google Drive (Manual)');
       });
       // Send data to Telegram channel
@@ -69,12 +71,10 @@ app.get('/', (req, res) => {
         text: "✅ Admin Database Manual Backup Successfull\n\n"+ datatosend
       })
         .then(() => {
-          res.send('Data sent to Telegram channel');
           console.log('Data sent to Telegram channel (Manual)');
         })
         .catch(error => {
           console.error(error);
-          res.send('Error sending data to Telegram channel');
           console.log('Error sending data to Telegram channel (Manual)');
         });
     });
